@@ -1,0 +1,17 @@
+.navMenu {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navMenu li {
+    flex: 1;
+    align-self: flex-start;
+    margin: 1em;
+    font-size: 1.2em;
+}
+
+.navMenu li:hover {
+    transition: 0.25s ease-in-out;
+    color: rgb(47, 116, 177);
+}
