@@ -5,13 +5,6 @@
 const searchSchoolInDB = async (schoolName) => {
     console.log(`here`)
     const response = await fetch(`/api/search?name=${schoolName}`)
-    // const response = await fetch('/api/search', {
-    //     method: 'POST',
-    //     body: JSON.stringify({name: schoolName}),
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     }
-    // })
 
     const data = await response.json();
 

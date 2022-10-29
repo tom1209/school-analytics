@@ -1,3 +1,7 @@
+html {
+  -webkit-print-color-adjust: exact; /* This makes sure that the PDF is rendered exactly like our layout. */
+}
+
 html,
 body {
   padding: 0;

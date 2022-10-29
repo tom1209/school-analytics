@@ -1,23 +1,33 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import styles from '../styles/Search.module.css'
 import { searchSchoolInDB } from "../helpers/queries"
 import  GradeCard from "../components/gradeCard/GradeCard";
+import { jsPDF } from "jspdf";
 
 const Search = () => {
     const [search, setSearch] = useState("");
     const [schoolData, setSchoolData] = useState({});
 
     const searchForSchool = async () => {
-        console.log(`searching school by name: ${search}`)
         //TODO - validate input
         const result = await searchSchoolInDB(search)
-
-        console.log(result);
         setSchoolData(result)
     }
 
-    const downloadPDF = () => {
-        console.log(`downloading`);
+    const downloadPDF = async () => {
+        let x = 100;
+        let y = 20;
+        const doc = new jsPDF();
+        doc.text(x, y, `School Name: ${schoolData.name}`, 'center');
+        schoolData.students.forEach( student => {
+            y +=10
+            doc.text(x, y, `Student: ${student.name}`, 'center')
+            student.grades.forEach( grade => {
+                y +=10
+                doc.text(x, y, `Class: ${grade.class}, Mark: ${grade.mark}`, 'center')
+            });
+        })
+        doc.save("schoolData");
     }
 
     return (
@@ -37,7 +47,7 @@ const Search = () => {
                     <h1 className={styles.schoolTitle}>{schoolData.name}</h1>         
                     <div className={styles.studentContainer}>
                         <button className={styles.downloadPDF} id="downloadPDF" onClick={() => downloadPDF()}>Download School Grades</button>
-                        
+
                         {schoolData.students.map( (student)=> {
                             const key = Math.floor(Math.random() * 1000);
                             return(
