@@ -1,0 +1,54 @@
+.addContainer {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    margin: 2em;
+    width: 40vw;
+    min-height: 40vh;
+    padding: 2.5em;
+    background: rgba(0,0,0,.5);
+    box-shadow: 0 4px 8px 0 rgb(187, 186, 186);
+    border-radius: 0.8em;
+}
+
+
+.formField {
+    align-self: center;
+}
+
+.addStudentTitle {
+    font-size: 1.1em;
+    margin: 1em;
+}
+
+.formField input {
+    width: 100%;
+    padding: 0.8em;
+    font-size: 1em;
+    color:black;
+    margin-bottom: 2em;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+.formField label {
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+  }
+
+.formField input:focus ~ label,
+.formField input:valid ~ label {
+  color: #03e9f4;
+  font-size: 12px;
+}
+
+.formField input:focus ~ label,
+.formField input:invalid ~ label {
+  color: #cc2424;
+  font-size: 12px;
+}

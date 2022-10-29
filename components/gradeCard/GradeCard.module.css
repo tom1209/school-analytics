@@ -1,0 +1,54 @@
+.gradeCardContainer {
+    background: rgb(48, 46, 46);
+    border-radius: 0.8em;
+    display: flex;
+    width:35vw;
+    min-height: 30vh;
+    box-shadow: 0 4px 8px 0 rgb(187, 186, 186);
+    transition: 0.3s;
+    color: whitesmoke;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.gradeCardContainer:hover {
+    box-shadow: 0 6px 12px 0 rgba(4, 7, 54, 0.904);
+    cursor: pointer;
+}
+
+.titleContainer {
+    font-weight: bold;
+    padding: 1em;
+    margin-left: 1em;
+    align-self: flex-start;
+}
+
+.grades {
+    padding: 1em;
+    width: 100%;
+}
+
+.gradeTable {
+    width: 100%;
+    border: 1px solid whitesmoke;
+    overflow: scroll;
+    box-shadow: 0 0 20px rgba(231, 231, 231, 0.1);
+}
+
+.gradeTable th, .gradeTable td  {
+    padding: 1em;
+}
+
+.gradeTable th {
+	text-align: left;
+}
+
+.gradeTable thead {
+	background-color: #48558b;
+}
+
+.gradeTable tbody tr:hover {
+	background-color: rgba(255, 255, 255, 0.336);
+}
+

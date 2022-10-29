@@ -1,0 +1,26 @@
+.header {
+    display: flex;
+    align-content: space-between;
+    flex-wrap: wrap;
+    background-color: rgb(48, 46, 46);
+    color: rgb(243, 239, 239);
+  }
+
+  .headerImage {
+    align-self: center;
+    flex: 1;
+  }
+
+  .title {
+    font-family: 'Fira Sans', sans-serif;
+    margin-left: 1em;
+  }
+
+  .titleText {
+    margin-left: 1em;
+  }
+
+  .navMenuContainer {
+    flex: 1;
+    align-self: center;
+  }
