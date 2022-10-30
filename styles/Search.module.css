@@ -83,3 +83,12 @@
     border: 1px solid black;
     box-shadow: 0 1px #666;
 }
+
+.error {
+    font-weight: bold;
+    background-color: rgb(158, 34, 34);
+    color: whitesmoke;
+    padding: 0.5em;
+    margin: 0.5em;
+    border-radius: 0.8em;
+  }

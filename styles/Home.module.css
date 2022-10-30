@@ -1,0 +1,13 @@
+.homeContainer {
+    margin: 2em;
+}
+
+.testNameContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.schoolHomeName {
+    font-weight: bold;
+    margin-left: 0.5em;
+}
