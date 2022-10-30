@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import validate from "../helpers/validateAddStudentForm";
 import { addStudentToSchool } from "../helpers/queries"
 import toast, { Toaster } from 'react-hot-toast';
-import NewGradeCard from "../components/newGradeCard/NewGradeCard";
+import GradeCard from "../components/gradeCard/GradeCard";
 
 
 const AddStudent = () => {
@@ -20,42 +20,47 @@ const AddStudent = () => {
         },
         validate,
         onSubmit: async (values, {resetForm}) => {
+            //Form data to send to DB
             const school = values.schoolName;
-            const grades = [
-                {
-                    class: values.newClass,
-                    mark: values.newMark
-                }
-            ];
-
             const student = {
                 name: values.studentName,
                 grades
             }
             
-            await addStudentToSchool(school, student)
-            toast.success('Successfully Added!!');
+            //Send to DB
+            try {
+                await addStudentToSchool(school, student)
+                toast.success('Successfully Added!!');
+            }
+            catch(e) {
+                console.error(e);
+                toast.error("Error updating DB");
+            }
+            
+            //Reset values
+            setGrades([]);
             resetForm();
         },
     });
 
     
-
+    /** Add a new grade to the grades array, so a student can have multiple grades */
     const addGrade = () => {
-        const newGrade = {
-            class: newClass,
-            mark: newMark
+        if (formik.errors.newClass || formik.errors.newMark || formik.values.newMark === "" || formik.values.newClass === "") {
+            toast.error('Fix errors before adding a grade!!');
+            return;
         }
-        console.log(newGrade);
-        
-        let updatedGrades = [...grades];
+        const newGrade = {
+            mark: formik.values.newMark,
+            class: formik.values.newClass
+        }
+        const updatedGrades = [...grades]
         updatedGrades.push(newGrade);
         setGrades(updatedGrades);
+
+        formik.values.newClass = "";
+        formik.values.newMark = "";
         console.log(grades);
-        
-        //Reset inputs
-        setNewClass("");
-        setNewMark(0);
     }
 
     return(
@@ -86,35 +91,30 @@ const AddStudent = () => {
                     </div>
 
                     <div className={styles.formField}>
-                        <h3>Add Grades</h3>
+                        <h3 styles={styles.gradeTitle}>Add Grades</h3>
 
-                        {/* <div className={styles.gradeDisplayContainer}>
-                            {
-                                grades.map( grade=> {
-                                    <NewGradeCard newClass={grade.class} mark={grade.mark} />
-                                })
-                            }
-                        </div> */}
+                        {formik.errors.newClass ? <div className={styles.error}>{formik.errors.newClass}</div> : null}
+                        {formik.errors.newMark ? <div className={styles.error}>{formik.errors.newMark}</div> : null}
+                        
+                        <div className={styles.addNewGradesContainer}>
+                            <label htmlFor="newClass">Enter Class</label>
+                            <label htmlFor="newMark">Enter Mark</label>
 
-                        {formik.touched.newClass && formik.errors.newClass ? <div className={styles.error}>{formik.errors.newClass}</div> : null}
-                        <label htmlFor="newClass">Enter Class</label>
-                        <input id="newClass" 
-                                name="newClass"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.newClass} />
+                            <input id="newClass" 
+                                    name="newClass"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.newClass} />
 
-                        {formik.touched.newMark && formik.errors.newMark ? <div className={styles.error}>{formik.errors.newMark}</div> : null}
-                        <label htmlFor="newMark">Enter Mark</label>
-                        <input id="newMark" 
-                                name="newMark" 
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.newMark} />
-
-                        {/* <button type="button" className={styles.addNewGradeButton} id="addNewGradeButton" onClick={addGrade}>Add Grade</button> */}
+                            <input id="newMark" 
+                                    name="newMark" 
+                                    onChange={formik.handleChange}
+                                    value={formik.values.newMark} />
+                        </div>
+                        <button type="button" className={styles.addNewGradeButton} id="addNewGradeButton" onClick={addGrade}>Add More Grades</button>
                     </div>
 
+                    { grades.length > 0 ? <GradeCard student={formik.values.studentName} grades={grades}/> : null}
+                   
                     <button type="submit" className={styles.addStudentButton} id="addStudentButton">Add Student</button>
                 </form>
             </div>

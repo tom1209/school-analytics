@@ -4,9 +4,13 @@ import { UilBookReader } from '@iconscout/react-unicons';
 const GradeCard = ({student, grades}) => {
   return (
     <div className={styles.gradeCardContainer}>
-        <div className={styles.titleContainer}>
-            <UilBookReader /> {student}
-        </div>
+        {
+            student !== "" ? 
+                <div className={styles.titleContainer} id="studentName">
+                    <UilBookReader /> {student}
+                </div>
+            : null
+        }   
         <div className={styles.grades}>
             
             <table className={styles.gradeTable}>

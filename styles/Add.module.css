@@ -4,6 +4,10 @@
     margin: 2em;
 }
 
+.addContainer .formField label {
+    color: #427dfc;
+}
+
 .addStudentFormContainer {
     width: 40vw;
     min-height: 40vh;
@@ -56,6 +60,7 @@
     width: 10vw;
     color: whitesmoke;
     border: none;
+    margin-bottom: 1.5em;
 }
 
 .addNewGradeButton:hover {
@@ -103,4 +108,20 @@
     padding: 0.5em;
     margin: 0.5em;
     border-radius: 0.8em;
+  }
+
+  .addNewGradesContainer{
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+  }
+
+  .addNewGradesContainer label {
+      align-self: center;
+      width: 45%;
+  }
+
+  .addNewGradesContainer input {
+    align-self: center;
+    width: 45%;
   }
