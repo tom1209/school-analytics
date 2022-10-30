@@ -1,13 +1,13 @@
 import { MongoClient } from 'mongodb';
 
+/**
+ * API for getting school/student data
+ * - will make a connection to the DB
+ * - use the schoolname from the query and make a request
+ * - return the data from the matching school
+ */
 async function handler(req, res) {
 
-  // if(req.method !== 'POST') {
-  //   return;
-  // }
-
-  // const name = req.body;
-  // const {name} = data;
   const name = req.query.name;
   const connectionString = process.env.MONGODB_URI;
 

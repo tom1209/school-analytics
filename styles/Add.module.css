@@ -1,14 +1,18 @@
 .addContainer {
     display: flex;
     flex-direction: column;
-    align-content: center;
     margin: 2em;
+}
+
+.addStudentFormContainer {
     width: 40vw;
     min-height: 40vh;
     padding: 2.5em;
-    background: rgba(0,0,0,.5);
+    background:  rgb(48, 46, 46);
     box-shadow: 0 4px 8px 0 rgb(187, 186, 186);
     border-radius: 0.8em;
+    color: whitesmoke;
+    align-self: center;
 }
 
 
@@ -17,15 +21,59 @@
 }
 
 .addStudentTitle {
-    font-size: 1.1em;
-    margin: 1em;
+    font-size: 1.2em;
+    margin-bottom: 2em;
+    color: whitesmoke;
+}
+
+.addStudentButton {
+    align-self: center;
+    width: 30vw;
+    padding: 15px;
+    background-color: #098d5b;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    border: none;
+    margin: 2em;
+}
+  
+.addStudentButton:hover {
+    transition: 0.5s ease-in-out;
+    background: #12f39d;
+    color: rgb(14, 62, 104);
+}
+
+.addStudentButton:active {
+    border: 1px solid black;
+    box-shadow: 0 1px #666;
+}
+
+.addNewGradeButton {
+    padding: 10px;
+    background-color: #0146a0; 
+    cursor: pointer; 
+    width: 10vw;
+    color: whitesmoke;
+    border: none;
+}
+
+.addNewGradeButton:hover {
+    transition: 0.5s ease-in-out;
+    background: #427dfc; 
+    color: rgb(255, 255, 255);
+}
+
+.addNewGradeButton:active {
+    border: 1px solid black;
+    box-shadow: 0 1px #666;
 }
 
 .formField input {
     width: 100%;
     padding: 0.8em;
     font-size: 1em;
-    color:black;
+    color:rgb(194, 194, 194);
     margin-bottom: 2em;
     border: none;
     border-bottom: 1px solid #fff;
@@ -41,14 +89,18 @@
     transition: .5s;
   }
 
-.formField input:focus ~ label,
-.formField input:valid ~ label {
-  color: #03e9f4;
-  font-size: 12px;
-}
+  .gradeDisplayContainer {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      margin: 1em;
+  }
 
-.formField input:focus ~ label,
-.formField input:invalid ~ label {
-  color: #cc2424;
-  font-size: 12px;
-}
+  .error {
+    font-weight: bold;
+    background-color: rgb(158, 34, 34);
+    color: whitesmoke;
+    padding: 0.5em;
+    margin: 0.5em;
+    border-radius: 0.8em;
+  }

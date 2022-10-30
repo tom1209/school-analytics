@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import styles from '../styles/Search.module.css'
 import { searchSchoolInDB } from "../helpers/queries"
 import  GradeCard from "../components/gradeCard/GradeCard";
