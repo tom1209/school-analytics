@@ -1,8 +1,9 @@
 import styles from "../styles/Add.module.css";
 import { useState } from "react";
 import { useFormik } from 'formik';
-import validate from "../helpers/validateForm";
+import validate from "../helpers/validateAddStudentForm";
 import { addStudentToSchool } from "../helpers/queries"
+import toast, { Toaster } from 'react-hot-toast';
 import NewGradeCard from "../components/newGradeCard/NewGradeCard";
 
 
@@ -18,7 +19,7 @@ const AddStudent = () => {
             newMark: ''
         },
         validate,
-        onSubmit: values => {
+        onSubmit: async (values, {resetForm}) => {
             const school = values.schoolName;
             const grades = [
                 {
@@ -32,9 +33,9 @@ const AddStudent = () => {
                 grades
             }
             
-            addStudentToSchool(school, student).then( res => {
-                console.log(res);
-            })
+            await addStudentToSchool(school, student)
+            toast.success('Successfully Added!!');
+            resetForm();
         },
     });
 
@@ -59,6 +60,7 @@ const AddStudent = () => {
 
     return(
         <div className={styles.addContainer}>
+            <Toaster />
             <div className={styles.addStudentFormContainer}>
                 <form autoComplete="off" onSubmit={formik.handleSubmit}>
                     <h1 className={styles.addStudentTitle}>Add a student and grades to a school</h1>

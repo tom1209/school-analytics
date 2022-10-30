@@ -1,18 +1,27 @@
 import { useState } from "react";
 import styles from '../styles/Search.module.css'
 import { searchSchoolInDB } from "../helpers/queries"
+import { useFormik } from 'formik';
+import validate from "../helpers/validateSearchForm";
 import  GradeCard from "../components/gradeCard/GradeCard";
 import { jsPDF } from "jspdf";
 
 const Search = () => {
-    const [search, setSearch] = useState("");
     const [schoolData, setSchoolData] = useState({});
 
-    const searchForSchool = async () => {
-        //TODO - validate input
-        const result = await searchSchoolInDB(search)
-        setSchoolData(result)
-    }
+    const formik = useFormik({
+        initialValues: {
+            search: ''
+        },
+        validate,
+        onSubmit: async (values,{resetForm}) => {
+            setSchoolData({})
+            const search = values.search;
+            const result = await searchSchoolInDB(search)
+            setSchoolData(result) 
+            resetForm();
+        }
+    })
 
     const downloadPDF = async () => {
         let x = 100;
@@ -33,15 +42,23 @@ const Search = () => {
     return (
         <div>
             <div className={styles.searchContainer}>
-                <div className={styles.searchForm}>
-                    <label className={styles.searchLabel}>Search for a school</label>
-                    <input className={styles.searchInput} id="search" value={search} onChange={ (e)=> setSearch(e.target.value)} />
-                </div>
-                <button className={styles.searchButton} id="searchButton" onClick={() => searchForSchool()}>Search</button>
+                <form className={styles.searchForm} autoComplete="off" onSubmit={formik.handleSubmit}>
+                    <div>
+                        {formik.touched.search && formik.errors.search ? <div className={styles.error}>{formik.errors.search}</div> : null}
+
+                        <label className={styles.searchLabel}>Search for a school</label>
+                        <input className={styles.searchInput} 
+                                id="search" 
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.search} />
+                    </div>
+                    <button type="submit" className={styles.searchButton} id="searchButton">Search</button>      
+                </form>
             </div>
 
             {
-                schoolData.students && schoolData.students.length > 0 ?
+                schoolData && schoolData.students && schoolData.students.length > 0 ?
                 
                 <div className={styles.schoolData}>
                     <h1 className={styles.schoolTitle}>{schoolData.name}</h1>         
