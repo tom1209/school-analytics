@@ -15,10 +15,18 @@ it("renders GradeCard correctly", () => {
   render(<GradeCard student={student} grades={grades} />)
 });
 
-it("should display gradeCard props name correct", () => {
+it("should display gradeCard props student name correctly", () => {
   render(<GradeCard student={student} grades={grades} />)
-  const studentName = screen.getByTestId("studentName");
+  const studentName = screen.getByText(student);
+  expect(studentName).toBeInTheDocument();
+});
 
-  expect(screen.getByTestId("studentName")).toBeInTheDocument();
-  expect(studentName).toHaveTextContent("Test Student");
+it("should display gradeCard props grades correctly", () => {
+  render(<GradeCard student={student} grades={grades} />)
+  grades.forEach( grade => {
+    const gradeClass = screen.getByText(grade.class);
+    const gradeMark = screen.getByText(grade.mark);
+    expect(gradeClass).toBeInTheDocument();
+    expect(gradeMark).toBeInTheDocument();
+  })
 });
