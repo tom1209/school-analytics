@@ -8,9 +8,10 @@ import { MongoClient } from 'mongodb';
  * - Note: If the school does not exist it will be added
  */
 async function handler(req, res) {
-    const {student, school} = req.body;
+    const {student, school} = req.body; //Req body data
     const connectionString = process.env.MONGODB_URI;
 
+    /** Open DB connection */
     MongoClient.connect(connectionString, (err, db)=> {
   
         if (err) {
@@ -25,6 +26,7 @@ async function handler(req, res) {
             grades: [...student.grades]
         }
 
+        /** Attempt to update the school (Or add new school) with new data */
         try {
             dbo.collection("schools").updateOne(
                 {name: school},

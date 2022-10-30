@@ -1,3 +1,7 @@
+/**
+ * Validation for the search form
+ * @param {*} values form values
+ */
 const validate = values => {
     const errors = {};
     

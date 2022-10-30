@@ -6,7 +6,11 @@ import { addStudentToSchool } from "../helpers/queries"
 import toast, { Toaster } from 'react-hot-toast';
 import GradeCard from "../components/gradeCard/GradeCard";
 
-
+/**
+ * Page to add a student
+ * User can enter a school, student name, and add multiple student grades
+ * If the school does not exist in the DB it will add a new school
+ */
 const AddStudent = () => {
     const [grades, setGrades] = useState([]);
 

@@ -1,3 +1,6 @@
+/**
+ * Catch patch for routes that have not been programmed
+ */
 const NotFound = () => {
     return (
         <div>

@@ -1,7 +1,7 @@
 # School Analytics Project 
 - Technologies used are NextJS, and MongoDB
 - There is a hosted MongoDB server which I can email the connection string for
-- A couple extra libraries were used: Formik for form handling, react-hot-toasts for toasts, jest for testing
+- A couple extra libraries were used: Formik for form handling, react-hot-toasts for toasts, jest for testing, jsPDF for generating a pdf, react-unicons for some icons
 
 ## Requirements 
 -input (text) that accepts school name

@@ -1,3 +1,4 @@
+/** List of Nav menu items */
 export const NavMenuItems = [
     {
         path: "/",

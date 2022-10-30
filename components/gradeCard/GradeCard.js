@@ -1,6 +1,11 @@
 import styles from "./GradeCard.module.css";
 import { UilBookReader } from '@iconscout/react-unicons';
 
+/**
+ * Component used to display student / grade information 
+ * @param {*} props: student - student name
+ * @param {*} props: grades - array of student grades
+ */
 const GradeCard = ({student, grades}) => {
   return (
     <div className={styles.gradeCardContainer}>
