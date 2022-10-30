@@ -1,8 +1,14 @@
 import { MongoClient } from 'mongodb';
 
+/**
+ * API for creating new students
+ * - will connect to the DB
+ * - Form the data from the req object, to send to the DB
+ * - Update the school with the new student
+ * - Note: If the school does not exist it will be added
+ */
 async function handler(req, res) {
-    //TODO Check post, req params for new student
-
+    const {student, school} = req.body;
     const connectionString = process.env.MONGODB_URI;
 
     MongoClient.connect(connectionString, (err, db)=> {
@@ -14,20 +20,14 @@ async function handler(req, res) {
 
         const dbo = db.db("schools-analytics");
 
-        //const query = { name: "University of Toronto" };
         const update = {
-            name: "Stephen King",
-            grades: [
-                {
-                    class: "Horror Writing",
-                    mark: 98
-                }
-            ]
+            name: student.name,
+            grades: [...student.grades]
         }
 
         try {
             dbo.collection("schools").updateOne(
-                {name: "University of Toronto"},
+                {name: school},
                 {$push:{students: update}},
                 {upsert: true} 
             )
@@ -38,8 +38,6 @@ async function handler(req, res) {
             res.status(500).json({message: "Error adding a student to the DB"})
         }
     });
-
-    //TODO: API resolved without sending a response for /api/create, this may result in stalled requests
 }
 
 export default handler;

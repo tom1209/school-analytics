@@ -1,5 +1,5 @@
 import styles from "./GradeCard.module.css";
-import { UilBookReader, UilBook } from '@iconscout/react-unicons';
+import { UilBookReader } from '@iconscout/react-unicons';
 
 const GradeCard = ({student, grades}) => {
   return (
