@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders add student page unchanged 1`] = `
+<div>
+  <div
+    class="addContainer"
+  >
+    <div
+      style="position: fixed; z-index: 9999; top: 16px; left: 16px; right: 16px; bottom: 16px; pointer-events: none;"
+    />
+    <div
+      class="addStudentFormContainer"
+    >
+      <form
+        autocomplete="off"
+      >
+        <h1
+          class="addStudentTitle"
+        >
+          Add a student and grades to a school
+        </h1>
+        <div
+          class="formField"
+        >
+          <label
+            for="schoolName"
+          >
+            School Name
+          </label>
+          <input
+            id="schoolName"
+            name="schoolName"
+            value=""
+          />
+        </div>
+        <div
+          class="formField"
+        >
+          <label
+            for="studentName"
+          >
+            Student Name
+          </label>
+          <input
+            id="studentName"
+            name="studentName"
+            value=""
+          />
+        </div>
+        <div
+          class="formField"
+        >
+          <h3
+            styles="gradeTitle"
+          >
+            Add Grades
+          </h3>
+          <div
+            class="addNewGradesContainer"
+          >
+            <label
+              for="newClass"
+            >
+              Enter Class
+            </label>
+            <label
+              for="newMark"
+            >
+              Enter Mark
+            </label>
+            <input
+              id="newClass"
+              name="newClass"
+              value=""
+            />
+            <input
+              id="newMark"
+              name="newMark"
+              value=""
+            />
+          </div>
+          <button
+            class="addNewGradeButton"
+            id="addNewGradeButton"
+            type="button"
+          >
+            Add More Grades
+          </button>
+        </div>
+        <button
+          class="addStudentButton"
+          id="addStudentButton"
+          type="submit"
+        >
+          Add Student
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+`;
