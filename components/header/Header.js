@@ -3,6 +3,9 @@ import Link from 'next/link'
 import NavMenu from "../navMenu/NavMenu";
 import { UilCell } from '@iconscout/react-unicons'
 
+/**
+ * Header component (Top menu bar)
+ */
 const Header = () => {
 
     return (

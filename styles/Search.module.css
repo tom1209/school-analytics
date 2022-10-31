@@ -92,3 +92,12 @@
     margin: 0.5em;
     border-radius: 0.8em;
   }
+
+  .notFound {
+    font-weight: bold;
+    background-color: rgb(182, 115, 27);
+    color: whitesmoke;
+    padding: 0.5em;
+    margin: 0.5em;
+    border-radius: 0.8em;
+  }

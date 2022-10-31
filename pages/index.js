@@ -1,5 +1,8 @@
 import styles from '../styles/Home.module.css'
 
+/**
+ * Index Page / Landing Page
+ */
 export default function Home() {
   return (
     <div className={styles.homeContainer}>
