@@ -26,21 +26,32 @@ const AddStudent = () => {
         onSubmit: async (values, {resetForm}) => {
             //Form data to send to DB
             const school = values.schoolName;
+
+            //If user has a class and mark typed but has not clicked add
+            let gradesToAdd = [...grades];
+            if( values.newClass !== '' && values.newMark !== '') {
+                const formGrade = {mark: values.newMark, class: values.newClass };
+                gradesToAdd.push(formGrade)
+                // console.log(gradesToAdd);
+            }
+
+            //Verifying at least one grade has been added
+            if(gradesToAdd.length < 1) {
+                toast.error('Please add a grade before submitting a student');
+                return;
+            }
+
             const student = {
                 name: values.studentName,
-                grades
+                grades: gradesToAdd
             }
             
             //Send to DB
-            try {
-                await addStudentToSchool(school, student)
-                toast.success('Successfully Added!!');
-            }
-            catch(e) {
-                console.error(e);
-                toast.error("Error updating DB");
-            }
-            
+            toast.loading('Loading...');
+            await addStudentToSchool(school, student);
+            toast.dismiss();
+            toast.success('Successfully Added!!');
+
             //Reset values
             setGrades([]);
             resetForm();
@@ -51,7 +62,7 @@ const AddStudent = () => {
     /** Add a new grade to the grades array, so a student can have multiple grades */
     const addGrade = () => {
         if (formik.errors.newClass || formik.errors.newMark || formik.values.newMark === "" || formik.values.newClass === "") {
-            toast.error('Fix errors before adding a grade!!');
+            toast.error('You need both a valid class and mark to add a grade!');
             return;
         }
         const newGrade = {

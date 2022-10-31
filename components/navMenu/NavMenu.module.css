@@ -4,14 +4,15 @@
     justify-content: space-between;
 }
 
-.navMenu li {
+.navMenu li{
     flex: 1;
     align-self: flex-start;
-    margin: 1em;
-    font-size: 1.2em;
+    margin: 1vw;
+    font-size: 22px;
+    text-decoration: none;
 }
 
-.navMenu li:hover {
+.navMenu li a:hover {
     transition: 0.25s ease-in-out;
-    color: rgb(47, 116, 177);
+    color: #427dfc
 }

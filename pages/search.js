@@ -5,12 +5,14 @@ import { useFormik } from 'formik';
 import validate from "../helpers/validateSearchForm";
 import  GradeCard from "../components/gradeCard/GradeCard";
 import { jsPDF } from "jspdf";
+import toast, { Toaster } from 'react-hot-toast';
 
 /**
  * Component for search page
  */
 const Search = () => {
     const [schoolData, setSchoolData] = useState({});   //Keeps track of school data returned from search
+    const [noSchoolFound, setNoSchoolFound] = useState(false);
 
     /** Form setup */
     const formik = useFormik({
@@ -19,11 +21,21 @@ const Search = () => {
         },
         validate,
         onSubmit: async (values,{resetForm}) => {
-            setSchoolData({})
+            setNoSchoolFound(false);
+            setSchoolData({});
             const search = values.search;
-            const result = await searchSchoolInDB(search)
-            setSchoolData(result) 
-            resetForm();
+
+            toast.loading('Loading...');
+            const result = await searchSchoolInDB(search);
+            toast.dismiss();
+
+            /** If no results display error, otherwise return data and clear form */
+            if(result == undefined) {
+                setNoSchoolFound(true);
+            } else {
+                setSchoolData(result) 
+                resetForm();
+            }
         }
     })
 
@@ -49,9 +61,11 @@ const Search = () => {
 
     return (
         <div>
+            <Toaster />
             <div className={styles.searchContainer}>
                 <form className={styles.searchForm} autoComplete="off" onSubmit={formik.handleSubmit}>
                     <div>
+                        {noSchoolFound ? <div className={styles.error}>No school found</div> : null}
                         {formik.touched.search && formik.errors.search ? <div className={styles.error}>{formik.errors.search}</div> : null}
 
                         <label className={styles.searchLabel}>Search for a school</label>

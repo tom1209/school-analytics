@@ -3,7 +3,7 @@
  * @param {*} schoolName - name of school to search
  */
 const searchSchoolInDB = async (schoolName) => {
-    try {
+    try {      
         const response = await fetch(`/api/search?name=${schoolName}`)
         const responseData = await response.json();
 
@@ -11,6 +11,7 @@ const searchSchoolInDB = async (schoolName) => {
     }
     catch (e) {
         console.error(e)
+        return e;
     }
 }
 
@@ -40,6 +41,7 @@ const addStudentToSchool = async (school, student) => {
     }
     catch(e) {
         console.error(e)
+        return e;
     }
 }
 

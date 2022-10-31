@@ -24,3 +24,7 @@
     flex: 1;
     align-self: center;
   }
+
+  .header a {
+    color: rgb(243, 239, 239);
+  }
