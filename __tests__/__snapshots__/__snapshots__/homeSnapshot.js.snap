@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders homepage unchanged 1`] = `
+<div>
+  <div
+    class="homeContainer"
+  >
+    <h1>
+      School Analytics
+    </h1>
+    <p>
+      Welcome to the school analytics site. You're able to search for a school, and check on the students and their grades. Or you can add a student and their grades to a school
+    </p>
+    <div
+      class="testNameContainer"
+    >
+      If you're looking for test schools to search for, you can search:
+      <span
+        class="schoolHomeName"
+      >
+        Mohawk College
+      </span>
+      <span
+        class="schoolHomeName"
+      >
+        University of Toronto
+      </span>
+      <span
+        class="schoolHomeName"
+      >
+        McMaster University
+      </span>
+      <span
+        class="schoolHomeName"
+      >
+        Hogwarts
+      </span>
+    </div>
+  </div>
+</div>
+`;

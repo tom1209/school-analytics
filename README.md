@@ -47,3 +47,15 @@ To run unit tests run
 - there is a generic /components folder, where components live. Each component has a js file, test (.spec) file, and css file
 
 - There is a /helpers folder which contains some generic reusable code
+
+# Testing
+- Using Jest for unit tests,
+- Using Test Project to create integration tests
+
+## Run Test Project Tests
+- In the test project folder there are a couple files, the important one being test_altus.py
+- You can go to https://testproject.io/ and signin, or signup
+- Click on the 'New Test' button
+- Select the 'Code' option
+- Drag and drop the file, or copy paste
+- Run the test
